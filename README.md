@@ -19,6 +19,11 @@ dockerを使用して、 postgresql の構築及び spring boot の起動を行�
 すでにjavaやpostgresqlの環境がある人は、sqlフォルダのsqlを実行して起動すれば問題ありません。  
 また、以下の実行は [docker](https://docs.docker.com/get-started/get-docker/) をインストールしていることが前提です。  
 
+### ディレクトリの移動
+```
+cd blog-backend/
+```
+
 ### 初回実行時
 ```
 docker compose up -d
