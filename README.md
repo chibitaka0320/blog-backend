@@ -11,25 +11,31 @@
 
 ## 環境構築
 ```
-$ git clone git@github.com:chibitaka0320/blog-backend.git
+git clone git@github.com:chibitaka0320/blog-backend.git
 ```
 
 ## 起動
 dockerを使用して、 postgresql の構築及び spring boot の起動を行います。  
-すでにjavaやpostgresqlの環境がある人は、sqlフォルダのsqlを実行して起動すれば問題ありません。
+すでにjavaやpostgresqlの環境がある人は、sqlフォルダのsqlを実行して起動すれば問題ありません。  
+また、以下の実行は [docker](https://docs.docker.com/get-started/get-docker/) をインストールしていることが前提です。  
+
+### ディレクトリの移動
+```
+cd blog-backend/
+```
 
 ### 初回実行時
 ```
-$ docker compose up -d
+docker compose up -d
 ```
 -dをつけることでバックグラウンド実行できる  
 
 ### 停止時
 ```
-$ docker compose stop
+docker compose stop
 ```
 
 ### 再開時
 ```
-$ docker compose start
+docker compose start
 ```
