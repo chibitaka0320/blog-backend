@@ -69,12 +69,9 @@ public class LoginController {
                     .withClaim("id", userId)
                     .withClaim("name", user.getName())
                     .sign(Algorithm.HMAC256("__secret__"));
-            // HttpHeaders httpHeaders = new HttpHeaders();
-            // httpHeaders.add("X-AUTH-TOKEN", token);
-            // return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
-            Cookie cookie = new Cookie("X-AUTH-TOKEN", token);
-            response.addCookie(cookie);
-            return ResponseEntity.ok("登録に成功しました");
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.add("X-AUTH-TOKEN", token);
+            return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("メールアドレスが重複しています");
         }
