@@ -13,7 +13,7 @@ CREATE TABLE users(
 -- ### 追加
 -- (PW:Test01)
 INSERT INTO users(name, email, password, introduction)
-VALUES('テスト01', 'test01@example.com', '$2a$08$97b3GIIIyRsSOKV4x9PdW.v07Wykoa1q.QXPy/Dc0/9i.95UpKLPK', 'テスト用ユーザー');
+VALUES('テスト01', 'test01@example.com', '$2a$08$97b3GIIIyRsSOKV4x9PdW.v07Wykoa1q.QXPy/Dc0/9i.95UpKLPK', 'テスト用ユーザーです。テスト用ユーザーです。');
 
 
 -- # articlesテーブル
