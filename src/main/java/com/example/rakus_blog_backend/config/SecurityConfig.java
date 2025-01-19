@@ -23,7 +23,7 @@ public class SecurityConfig {
         http.cors(cors -> cors.configurationSource(this.corsConfigurationSource()));
         http.csrf(csrf -> csrf.disable());
         http.authorizeHttpRequests(authz -> authz
-                .requestMatchers("/users/**").authenticated()
+                .requestMatchers("/users/*").authenticated()
                 .anyRequest().permitAll());
         http.addFilterBefore(new AuthorizeFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();

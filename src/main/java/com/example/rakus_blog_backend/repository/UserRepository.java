@@ -33,13 +33,24 @@ public class UserRepository {
     public User findByEmail(String email) {
         String sql = "SELECT id, name, password, email, created_at, updated_at FROM users WHERE email = :email";
         SqlParameterSource param = new MapSqlParameterSource().addValue("email", email);
-
         try {
             User user = template.queryForObject(sql, param, USER_ROW_MAPPER);
             return user;
         } catch (DataAccessException e) {
             return null;
         }
+    }
+
+    public User findByUser(Integer userId) {
+        String sql = "SELECT id, name, password, email, created_at, updated_at FROM users WHERE id = :id";
+        SqlParameterSource param = new MapSqlParameterSource().addValue("id", userId);
+        try {
+            User user = template.queryForObject(sql, param, USER_ROW_MAPPER);
+            return user;
+        } catch (DataAccessException e) {
+            return null;
+        }
+
     }
 
     public Integer insert(User user) {

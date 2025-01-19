@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.rakus_blog_backend.domain.Article;
 import com.example.rakus_blog_backend.domain.User;
+import com.example.rakus_blog_backend.domain.dto.UserInArticle;
 import com.example.rakus_blog_backend.repository.ArticleRepository;
 import com.example.rakus_blog_backend.repository.UserRepository;
 
@@ -32,7 +33,16 @@ public class UserService {
         return userRepository.insert(user);
     }
 
-    public List<Article> getArticles(Integer userId) {
-        return articleRepository.findByUserId(userId);
+    public UserInArticle getArticles(Integer userId) {
+        User user = userRepository.findByUser(userId);
+
+        if (user == null) {
+            return null;
+        } else {
+            List<Article> articleList = articleRepository.findByUserId(userId);
+            UserInArticle userInArticle = new UserInArticle(user.getId(), user.getName(), user.getIntroduction(),
+                    articleList);
+            return userInArticle;
+        }
     }
 }
