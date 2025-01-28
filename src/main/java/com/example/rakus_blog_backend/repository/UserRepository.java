@@ -23,6 +23,8 @@ public class UserRepository {
         User user = new User();
         user.setId(rs.getInt("id"));
         user.setName(rs.getString("name"));
+        user.setIntroduction(rs.getString("introduction"));
+        user.setImageUrl(rs.getString("image_url"));
         user.setPassword(rs.getString("password"));
         user.setEmail(rs.getString("email"));
         user.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
@@ -31,7 +33,7 @@ public class UserRepository {
     };
 
     public User findByEmail(String email) {
-        String sql = "SELECT id, name, password, email, created_at, updated_at FROM users WHERE email = :email";
+        String sql = "SELECT id, name, introduction, image_url, password, email, created_at, updated_at FROM users WHERE email = :email";
         SqlParameterSource param = new MapSqlParameterSource().addValue("email", email);
         try {
             User user = template.queryForObject(sql, param, USER_ROW_MAPPER);
@@ -42,7 +44,7 @@ public class UserRepository {
     }
 
     public User findByUser(Integer userId) {
-        String sql = "SELECT id, name, password, email, created_at, updated_at FROM users WHERE id = :id";
+        String sql = "SELECT id, name, introduction, image_url, password, email, created_at, updated_at FROM users WHERE id = :id";
         SqlParameterSource param = new MapSqlParameterSource().addValue("id", userId);
         try {
             User user = template.queryForObject(sql, param, USER_ROW_MAPPER);
@@ -51,6 +53,13 @@ public class UserRepository {
             return null;
         }
 
+    }
+
+    public void update(User user) {
+        String sql = "UPDATE users SET name=:name, introduction=:introduction, image_url=:imageUrl where id=:id";
+        SqlParameterSource param = new BeanPropertySqlParameterSource(user);
+
+        template.update(sql, param);
     }
 
     public Integer insert(User user) {

@@ -1,4 +1,4 @@
-package com.example.rakus_blog_backend.domain;
+package com.example.rakus_blog_backend.domain.dto;
 
 import java.time.LocalDateTime;
 
@@ -9,13 +9,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class UserDetailDTO {
+
     private Integer id;
     private String name;
     private String email;
-    private String password;
     private String introduction;
     private String imageUrl;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
 }

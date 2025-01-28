@@ -2,11 +2,13 @@ package com.example.rakus_blog_backend.service;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.rakus_blog_backend.domain.Article;
 import com.example.rakus_blog_backend.domain.User;
+import com.example.rakus_blog_backend.domain.dto.UserDetailDTO;
 import com.example.rakus_blog_backend.domain.dto.UserInArticle;
 import com.example.rakus_blog_backend.repository.ArticleRepository;
 import com.example.rakus_blog_backend.repository.UserRepository;
@@ -22,6 +24,15 @@ public class UserService {
 
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public UserDetailDTO findByIdDetail(Integer userId) {
+        User user = userRepository.findByUser(userId);
+        UserDetailDTO userDetailDTO = new UserDetailDTO();
+
+        BeanUtils.copyProperties(user, userDetailDTO);
+
+        return userDetailDTO;
     }
 
     public Integer insert(User user) {
@@ -44,5 +55,9 @@ public class UserService {
                     articleList);
             return userInArticle;
         }
+    }
+
+    public void update(User user) {
+        userRepository.update(user);
     }
 }
